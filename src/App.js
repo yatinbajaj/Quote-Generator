@@ -1,0 +1,42 @@
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+import AllQuotes from "./pages/AllQuotes";
+import NewQuote from "./pages/NewQuote";
+import QuoteDetail from "./pages/QuoteDetail";
+import NotFound from "./pages/NotFound";
+import Layout from "./components/layout/Layout";
+
+function App() {
+  return (
+    <React.Fragment>
+      <Router>
+        <Layout>
+          <Switch>
+            <Route path="/" exact>
+              <Redirect to="/quotes" />
+            </Route>
+            <Route path="/quotes" exact>
+              <AllQuotes />
+            </Route>
+            <Route path="/quotes/:quoteId">
+              <QuoteDetail />
+            </Route>
+            <Route path="/new-quote" exact>
+              <NewQuote />  
+            </Route>
+            <Route path="*">
+              <NotFound />
+            </Route>
+          </Switch>
+        </Layout>
+      </Router>
+    </React.Fragment>
+  );
+}
+
+export default App;
